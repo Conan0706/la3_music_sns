@@ -1,20 +1,20 @@
 <section class="center-vertical">
 	<h1>検索フォーム</h1>
-	<form>
-		<input type="" name="" placeholder="キーワード">
+	<form action="search" method="get">
+		<input type="text" name="keyward" placeholder="キーワード">
 		<input type="submit" value="検索">
 	</form>
 	<h2>検索結果</h2>
 	<p><%= @user %></p>
-	<p><%= @music %>
 
 		<div class="center-horizontal">
+			<% @results.each do |result| %>
 				<div class="post center-vertical">
-					<img src="" width="125" height="125">
-					<p>アーティスト: 〇〇</p>
-					<p>アルバム: 〇〇</p>
-					<p>曲名: 〇〇</p>
-					<p><a href="#">サンプル</a></p>
+					<img src="<%= result["artworkUrl100"] %>" width="125" height="125">
+					<p>アーティスト: <%= result["artistName"] %></p>
+					<p>アルバム: <%= result["collectionName"] %></p>
+					<p>曲名: <%= result["trackName"] %></p>
+					<p><a href="<%= result["previewUrl"] %>">サンプル</a></p>
 					<form>
 						<input type="" value="" name="">
 						<input type="" value="" name="">
@@ -25,7 +25,7 @@
 						<input type="submit" value="投稿">
 					</form>
 				</div>
-
+			<% end %>
 		</div>
 
 	<%# TODO: 検索結果によって分岐 %>

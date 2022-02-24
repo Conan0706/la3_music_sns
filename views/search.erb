@@ -12,11 +12,21 @@
 				<% @results.each do |result| %>
 					<div class="post center-vertical">
 						<form action="post" method="post">
-							<img src="<%= result["artworkUrl100"] %>" width="125" height="125">
-							<p>アーティスト: <%= result["artistName"] %></p>
-							<p>アルバム: <%= result["collectionName"] %></p>
-							<p>曲名: <%= result["trackName"] %></p>
-							<p><a href="<%= result["previewUrl"] %>">サンプル</a></p>
+							<div>
+								<img src="<%= result["artworkUrl100"] %>" width="125" height="125"><input type="hidden" name="artworkUrl100" value="<%= result["artworkUrl100"] %>">
+							</div>
+							<div>
+								<p><アーティスト:<%= result["artistName"] %><input id="artistName" type="hidden" name=artistName value="<%= result["artistName"] %>"></p>
+							</div>
+							<div>
+								<p><アルバム:<%= result["collectionName"] %><input id="artistName" type="hidden" name=collectionName value="<%= result["collectionName"] %>"></p>
+							</div>
+							<div>
+								<p>曲名: <%= result["trackName"] %><input type="hidden" name="trackName" value="<%= result["trackName"]%>"></p>
+							</div>
+							<div>
+								<p><a href="<%= result["previewUrl"] %>">サンプル</a><input type="hidden" name="previewUrl" value="<%= result["previewUrl"] %>"></p>
+							</div>
 							<input type="text" name="comment" placeholder="コメント">
 							<input type="submit" value="投稿">
 						</form>

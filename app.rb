@@ -43,6 +43,8 @@ get "/search" do
 end
 
 get "/post" do
+    @user = current_user.name
+    @posts = Post.all
     erb :home
 end
 
@@ -55,6 +57,7 @@ post "/signup" do
     
     if @user.persisted?
         session[:user] = @user.id
+        redirect "/search"
     end
     redirect "/"
 end
@@ -79,6 +82,5 @@ post "/post" do
         sample: params[:previewUrl],
         comment: params[:comment]
     )
-    
     redirect "/post"
 end

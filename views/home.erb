@@ -1,18 +1,28 @@
 <section class="center-vertical">
-	<h1>〇〇の投稿</h1>
+	<h1><%= @user %>の投稿</h1>
+	<% @posts.each do |post| %>
+		<div class="post center-vertical">
+			<img src="<%= post.jacket%>" width="125" height="125">
+			<p>アーティスト:<%= post.artist %></p>
+			<p>アルバム: <%= post.album %></p>
+			<p>曲名: <%= post.title %></p>
+			<p><a href="<%= post.sample %>">サンプル</a></p>
+			<p>コメント：<%= post.comment %></p>
+		</div>
+	<% end %>
 	<p>投稿がありません</p>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のイイねした投稿</h1>
+	<h1><%= @user %>のイイねした投稿</h1>
 	<p>イイねがありません</p>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のフォロー</h1>
+	<h1><%= @user %>のフォロー</h1>
 	<a href="#">フォロー解除</a><br>
 </section>
 
 <section class="center-vertical">
-	<h1>〇〇のフォロワー</h1>
+	<h1><%= @user %>のフォロワー</h1>
 </section>

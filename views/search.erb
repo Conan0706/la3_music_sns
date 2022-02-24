@@ -6,29 +6,25 @@
 	</form>
 	<h2>検索結果</h2>
 	<p><%= @user %></p>
-
+	
 		<div class="center-horizontal">
-			<% @results.each do |result| %>
-				<div class="post center-vertical">
-					<img src="<%= result["artworkUrl100"] %>" width="125" height="125">
-					<p>アーティスト: <%= result["artistName"] %></p>
-					<p>アルバム: <%= result["collectionName"] %></p>
-					<p>曲名: <%= result["trackName"] %></p>
-					<p><a href="<%= result["previewUrl"] %>">サンプル</a></p>
-					<form>
-						<input type="" value="" name="">
-						<input type="" value="" name="">
-						<input type="" value="" name="">
-						<input type="" value="" name="">
-						<input type="" value="" name="">
-						<input type="" name="" placeholder="コメント">
-						<input type="submit" value="投稿">
-					</form>
-				</div>
+			<% if @results.size != 0 %>
+				<% @results.each do |result| %>
+					<div class="post center-vertical">
+						<form action="post" method="post">
+							<img src="<%= result["artworkUrl100"] %>" width="125" height="125">
+							<p>アーティスト: <%= result["artistName"] %></p>
+							<p>アルバム: <%= result["collectionName"] %></p>
+							<p>曲名: <%= result["trackName"] %></p>
+							<p><a href="<%= result["previewUrl"] %>">サンプル</a></p>
+							<input type="text" name="comment" placeholder="コメント">
+							<input type="submit" value="投稿">
+						</form>
+					</div>
+				<% end %>
+			<% else %>
+			<%# TODO: 検索結果によって分岐 %>
+			<p>検索結果がありません</p>
 			<% end %>
 		</div>
-
-	<%# TODO: 検索結果によって分岐 %>
-	<p>検索結果がありません</p>
-
 </section>

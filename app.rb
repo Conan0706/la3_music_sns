@@ -42,6 +42,10 @@ get "/search" do
     erb :search
 end
 
+get "/post" do
+    erb :home
+end
+
 post "/signup" do
     @user = User.create(
         name: params[:name],
@@ -63,4 +67,18 @@ post "/signin" do
     else
         redirect "/"
     end
+end
+
+post "/post" do
+    content=Post.create(
+        user_id: current_user.id,
+        artist: params[:artistName],
+        album: params[:collectionName],
+        title: params[:trackName],
+        jacket: params[:artworkUrl100],
+        sample: params[:previewUrl],
+        comment: params[:comment]
+    )
+    
+    redirect "/post"
 end

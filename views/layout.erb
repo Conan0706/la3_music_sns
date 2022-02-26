@@ -13,7 +13,9 @@
 	<body>
 		<nav class="center-horizontal">
 			<a href="/" method="get">MUSIC SNS!!!</a>
-			<a href="#"><img src="" alt="user_image" width="40" height="40"></a>
+			<% unless @nowuser.nil? %>
+				<a href="#"><img src="<%= @nowuser.image %>" alt="user_image" width="40" height="40"></a>
+			<% end %>
 			<a href="#">Search</a>
 			<a href="/signup">Sign out</a>
 		</nav>

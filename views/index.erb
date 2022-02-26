@@ -3,11 +3,13 @@
 	<div class="login_button">
 	</div>
 	<div>
-		<form action="signin" method="post">
-			<input type="text" name="name" placeholder="ユーザー名">
-			<input type="password" name="password" placeholder="パスワード">
-			<input type="submit" value="Sign in">
-		</form>
+		<% if @nowuser.nil? %>
+			<form action="signin" method="post">
+				<input type="text" name="name" placeholder="ユーザー名">
+				<input type="password" name="password" placeholder="パスワード">
+				<input type="submit" value="Sign in">
+			</form>
+		<% end %>
 	</div>
 </section>
 
@@ -16,13 +18,17 @@
 	
 
 	<div class="post center-vertical">
-		<img src="" width="125" height="125">
-		<p>アーティスト: 〇〇</p>
-		<p>アルバム: 〇〇</p>
-		<p>曲名: 〇〇</p>
-		<p><a href="#">サンプル</a></p>
-		<p>コメント: 〇〇</p>
-		<p>投稿者: 〇〇</p>
+		<% @posts.each do |post| %>
+		<div class="post center-vertical">
+			<img src="<%= post.jacket%>" width="125" height="125">
+			<p>アーティスト:<%= post.artist %></p>
+			<p>アルバム: <%= post.album %></p>
+			<p>曲名: <%= post.title %></p>
+			<p><a href="<%= post.sample %>">サンプル</a></p>
+			<p>コメント：<%= post.comment %></p>
+		</div>
+		<% end %>
+		<!--<p>投稿者: /p>-->
 		<a href="#">フォローする</a>
 		<a href="#">フォロー解除</a>
 		<p>いいねしたユーザー</p>

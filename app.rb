@@ -17,10 +17,19 @@ helpers do
     def  current_user
         User.find_by(id: session[:user])
     end
+    
+    Dotenv.load
+    Cloudinary.config do |config|
+        config.cloud_name = ENV["CLOUD_NAME"]
+        config.api_key = ENV["CLOUDINARY_API_KEY"]
+        config.api_secret = ENV["CLOUDINARY_API_SECRET"]
+    end
 end
 
 
 get '/' do
+    @posts=Post.all
+    @nowuser = current_user
     erb :index
 end
 
@@ -49,8 +58,14 @@ get "/post" do
 end
 
 post "/signup" do
+    img=params[:image]
+    tempfile = img[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    img_url = upload["url"]
+    
     @user = User.create(
         name: params[:name],
+        image: img_url,
         password: params[:password], 
         password_confirmation: params[:password_confirmation]
     )

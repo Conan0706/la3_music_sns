@@ -99,3 +99,22 @@ post "/post" do
     )
     redirect "/post"
 end
+
+post "/posts/:id/delete" do
+    post = Post.find(params[:id])
+    post.destroy
+    redirect "/post"
+end
+
+get "/posts/:id/edit" do
+    @post = Post.find(params[:id])
+    erb :edit
+end
+
+post "/post/:id/edit" do
+    @post = Post.find(params[:id])
+    @post.comment = params[:newcomment]
+    @post.save
+    
+    redirect "/post"
+end

@@ -26,10 +26,16 @@ helpers do
     end
 end
 
+before "/search" do
+    @nowuser = current_user
+end
+
+before "/post" do
+    @nowuser = current_user
+end
 
 get '/' do
     @posts=Post.all
-    @nowuser = current_user
     erb :index
 end
 
@@ -49,6 +55,11 @@ get "/search" do
     json = JSON.parse(res.body)
     @results=json["results"]
     erb :search
+end
+
+get "/signout" do
+    session[:user] = nil
+    redirect "/"
 end
 
 get "/post" do
@@ -100,7 +111,7 @@ post "/post" do
     redirect "/post"
 end
 
-post "/posts/:id/delete" do
+get "/posts/:id/delete" do
     post = Post.find(params[:id])
     post.destroy
     redirect "/post"

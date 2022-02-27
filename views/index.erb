@@ -1,13 +1,15 @@
 <section class="first-view center-vertical">
 	<h1>MUSIC SNS!!!</h1>
-	<div class="login_button">
+	<!--<div class="login_button">-->
 	</div>
 	<div>
 		<% if @nowuser.nil? %>
 			<form action="signin" method="post">
-				<input type="text" name="name" placeholder="ユーザー名">
-				<input type="password" name="password" placeholder="パスワード">
-				<input type="submit" value="Sign in">
+				<div class="login">
+					<input type="text" name="name" placeholder="ユーザー名">
+					<input type="password" name="password" placeholder="パスワード">
+					<input type="submit" value="Sign in">
+				</div>
 			</form>
 		<% end %>
 	</div>

@@ -8,9 +8,7 @@
 			<p>曲名: <%= post.title %></p>
 			<p><a href="<%= post.sample %>">サンプル</a></p>
 			<p>コメント：<%= post.comment %></p>
-			<form action="/posts/<%= post.id %>/delete" method="post">
-				<input type="submit" value="削除">
-			</form>
+			<a href="/posts/<%= post.id %>/delete" method="get">削除</a>
 			<a href="/posts/<%= post.id%>/edit" method="get">編集</a>
 		</div>
 	<% end %>

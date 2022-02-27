@@ -14,10 +14,13 @@
 		<nav class="center-horizontal">
 			<a href="/" method="get">MUSIC SNS!!!</a>
 			<% unless @nowuser.nil? %>
-				<a href="#"><img src="<%= @nowuser.image %>" alt="user_image" width="40" height="40"></a>
+				<a href="post"><img src="<%= @nowuser.image %>" alt="user_image" width="40" height="40"></a>
+				<a href="/search">Search</a>
+				<a href="/signout">Sign out</a>
+			<% else %>
+				<a href="/signup">Sign up</a>
 			<% end %>
-			<a href="#">Search</a>
-			<a href="/signup">Sign out</a>
+			
 		</nav>
 
 		<main>

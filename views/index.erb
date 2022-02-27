@@ -22,14 +22,22 @@
 	<div class="post center-vertical">
 		<% @posts.each do |post| %>
 		<div class="post center-vertical">
-			<img src="<%= post.jacket%>" width="125" height="125">
+			<img src="<%= post.jacket %>" width="125" height="125">
 			<p>アーティスト:<%= post.artist %></p>
 			<p>アルバム: <%= post.album %></p>
 			<p>曲名: <%= post.title %></p>
 			<p><a href="<%= post.sample %>">サンプル</a></p>
 			<p>コメント：<%= post.comment %></p>
+			<a href="/posts/<%= post.id %>/like" method="get">いいねする</a>
+			<p>いいねしたユーザー</p>
+			<div class="user-box">
+				<% post.like_users.each do |like_user| %>
+					<img src="<%= like_user.image %>" alt="user_image" width="40" height="40">
+				<% end %>
+			</div>
 		</div>
 		<% end %>
+		
 		<!--<p>投稿者: /p>-->
 		<a href="#">フォローする</a>
 		<a href="#">フォロー解除</a>

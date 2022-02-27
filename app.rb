@@ -34,8 +34,12 @@ before "/post" do
     @nowuser = current_user
 end
 
+
+
 get '/' do
     @posts = Post.all
+    @nowuser = current_user
+    
     erb :index
 end
 
@@ -128,4 +132,14 @@ post "/post/:id/edit" do
     @post.save
     
     redirect "/post"
+end
+
+get "/posts/:id/like" do
+    post_id = params[:id]
+    Like.create(
+        user_id: current_user.id,
+        post_id: post_id
+    )
+    
+    redirect "/"
 end

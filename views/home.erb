@@ -1,5 +1,8 @@
 <section class="center-vertical">
 	<h1><%= @user %>の投稿</h1>
+	<% if @posts.nil? %>
+		<p>投稿がありません</p>
+	<% end %>
 	<% @posts.each do |post| %>
 		<div class="post center-vertical">
 			<img src="<%= post.jacket%>" width="125" height="125">
@@ -12,8 +15,6 @@
 			<a href="/posts/<%= post.id%>/edit" method="get">編集</a>
 		</div>
 	<% end %>
-	
-	<p>投稿がありません</p>
 </section>
 
 <section class="center-vertical">

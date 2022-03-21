@@ -4,16 +4,20 @@
 		<p>投稿がありません</p>
 	<% end %>
 	<% @posts.each do |post| %>
-		<div class="post center-vertical">
-			<img src="<%= post.jacket%>" width="125" height="125">
-			<p>アーティスト:<%= post.artist %></p>
-			<p>アルバム: <%= post.album %></p>
-			<p>曲名: <%= post.title %></p>
-			<p><a href="<%= post.sample %>">サンプル</a></p>
-			<p>コメント：<%= post.comment %></p>
-			<a href="/posts/<%= post.id %>/delete" method="get">削除</a>
-			<a href="/posts/<%= post.id %>/edit" method="get">編集</a>
-		</div>
+		
+			<% if post.user_id == current_user.id %>
+				<div class="post center-vertical">
+					<img src="<%= post.jacket%>" width="125" height="125">
+					<p>アーティスト:<%= post.artist %></p>
+					<p>アルバム: <%= post.album %></p>
+					<p>曲名: <%= post.title %></p>
+					<p><a href="<%= post.sample %>">サンプル</a></p>
+					<p>コメント：<%= post.comment %></p>
+					<a href="/posts/<%= post.id %>/delete" method="get">削除</a>
+					<a href="/posts/<%= post.id %>/edit" method="get">編集</a>
+				</div>
+			<% end %>
+		
 	<% end %>
 </section>
 

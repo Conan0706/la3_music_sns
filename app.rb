@@ -68,6 +68,7 @@ end
 
 get "/post" do
     @user = current_user.name
+    @likes = Like.all
     @posts = Post.all
     erb :home
 end

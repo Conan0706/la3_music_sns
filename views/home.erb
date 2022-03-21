@@ -4,7 +4,6 @@
 		<p>投稿がありません</p>
 	<% end %>
 	<% @posts.each do |post| %>
-		
 			<% if post.user_id == current_user.id %>
 				<div class="post center-vertical">
 					<img src="<%= post.jacket%>" width="125" height="125">
@@ -23,7 +22,23 @@
 
 <section class="center-vertical">
 	<h1><%= @user %>のイイねした投稿</h1>
-	<p>イイねがありません</p>
+	<% @likes.each do |like| %>
+		<% if current_user.id == like.user_id %>
+			<% like_post = Post.find(like.post_id) %>
+			<div class="post center-vertical">
+				<img src="<%= like_post.jacket %>" width="125" height="125">
+				<p>アーティスト:<%= like_post.artist %></p>
+				<p>アルバム: <%= like_post.album %></p>
+				<p>曲名: <%= like_post.title %></p>
+				<p><a href="<%= like_post.sample %>">サンプル</a></p>
+				<p>コメント：<%= like_post.comment %></p>
+				<a href="/posts/<%= like_post.id %>/delete" method="get">削除</a>
+				<a href="/posts/<%= like_post.id %>/edit" method="get">編集</a>
+			</div>
+		<% else %>
+			<p>イイねがありません</p>
+		<% end %>
+	<% end %>
 </section>
 
 <section class="center-vertical">

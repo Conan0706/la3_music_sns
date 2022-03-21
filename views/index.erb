@@ -28,13 +28,15 @@
 			<p>曲名: <%= post.title %></p>
 			<p><a href="<%= post.sample %>">サンプル</a></p>
 			<p>コメント：<%= post.comment %></p>
-			<a href="/posts/<%= post.id %>/like" method="get">いいねする</a>
 			<p>いいねしたユーザー</p>
 			<div class="user-box">
 				<% post.like_users.each do |like_user| %>
 					<img src="<%= like_user.image %>" alt="user_image" width="40" height="40">
 				<% end %>
 			</div>
+			<% if !current_user.nil? %>
+				<a href="/posts/<%= post.id %>/like" method="get">いいねする</a>
+			<% end %>
 		</div>
 		<% end %>
 		

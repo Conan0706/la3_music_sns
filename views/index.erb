@@ -35,7 +35,12 @@
 				<% end %>
 			</div>
 			<% if !current_user.nil? %>
-				<a href="/posts/<%= post.id %>/like" method="get">いいねする</a>
+				<% #binding.pry %>
+				<% unless post.like_users.find_by(id: current_user.id) %>
+					<a href="/posts/<%= post.id %>/like" method="get">いいねする</a>
+				<% else %>
+					<a href="/posts/<%= post.id %>/like" method="get">いいね解除する</a>
+				<% end %>
 			<% end %>
 		</div>
 		<% end %>

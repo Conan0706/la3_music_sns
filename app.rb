@@ -9,6 +9,8 @@ require "open-uri"
 require "json"
 require "net/http"
 
+require 'pry'
+
 # require 'itunes-search-api'
 
 enable :sessions
@@ -39,6 +41,7 @@ end
 get '/' do
     @posts = Post.all
     @nowuser = current_user
+    @likes = Like.all
     
     erb :index
 end

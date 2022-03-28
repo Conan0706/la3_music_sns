@@ -144,10 +144,15 @@ end
 
 get "/posts/:id/like" do
     post_id = params[:id]
-    Like.create(
-        user_id: current_user.id,
-        post_id: post_id
-    )
-    
+    if Like.find_by(post_id: params[:id]).nil?
+        Like.create(
+            user_id: current_user.id,
+            post_id: post_id
+        )
+    else
+        like = Like.find_by(post_id: params[:id])
+        like.delete
+    end
+
     redirect "/"
 end
